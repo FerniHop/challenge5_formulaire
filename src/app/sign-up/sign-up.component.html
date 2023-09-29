@@ -1,0 +1,51 @@
+<form #myForm="ngForm" (ngSubmit)="myForm.valid && onSubmit()">
+    <div>
+      <label for="firstname-user">Prénom</label>
+      <input id="firstname-user" name="firstname-user" type="text" [(ngModel)]="model.firstname" #firstname="ngModel" required minlength="3" maxlength="15"/>
+    </div>
+  
+    <!-- Message d'erreurs de l'input firstname -->
+    <div *ngIf="firstname.errors">
+      <span *ngIf="firstname.errors?.['required']">Le prénom est requis</span>
+      <span *ngIf="firstname.errors?.['minlength']">La longueur minimale doit être supérieure à 3</span>
+      <span *ngIf="lastname.errors?.['maxlength']">La longueur maximale doit être inferieur à 15</span>
+    </div>
+
+    <div>
+        <label for="lastname-user">Nom</label>
+        <input id="lastname-user" name="lastname-user" type="text" [(ngModel)]="model.lastname" #lastname="ngModel" required minlength="3" maxlength="15"/>
+      </div>
+    
+      <!-- Message d'erreurs de l'input title -->
+      <div *ngIf="lastname.errors">
+        <span *ngIf="lastname.errors?.['required']">Le nom est requis</span>
+        <span *ngIf="lastname.errors?.['minlength']">La longueur minimale doit être supérieure à 3</span>
+        <span *ngIf="lastname.errors?.['maxlength']">La longueur maximale doit être inferieur à 15</span>
+
+      </div>
+
+      <div>
+        <label for="email-user">Email</label>
+        <input id="email-user" name="title-user" type="text" [(ngModel)]="model.email" #email="ngModel" required email/>
+      </div>
+    
+      <!-- Message d'erreurs de l'input email -->
+      <div *ngIf="email.errors">
+        <span *ngIf="email.errors?.['required']">L'adresse email est requis</span>
+        <span *ngIf="email.errors?.['email']">L'email est invalide</span>
+      </div>
+
+      <div>
+        <label for="password-user">Mot de Passe</label>
+        <input id="password-user" name="password-user" type="text" [(ngModel)]="model.password" #password="ngModel" required minlength="5"/>
+      </div>
+    
+      <!-- Message d'erreurs de l'input title -->
+      <div *ngIf="password.errors">
+        <span *ngIf="password.errors?.['required']">Le mot de passe est requis</span>
+        <span *ngIf="password.errors?.['minlength']">La longueur minimale doit être supérieure à 5</span>
+      </div>
+  
+      <button type="reset">Restaurer</button>
+      <button type="submit">Sauvegarder</button>
+  </form>
